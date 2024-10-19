@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'student_login.dart'; // Import the StudentLoginScreen
+import 'teacher_login.dart'; // Import the TeacherLoginScreen
 
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Stack(
         children: [
           // Background decoration
@@ -25,7 +26,7 @@ class LoginScreen extends StatelessWidget {
               children: [
                 Text(
                   'Login as',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color:Colors.white),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
                 SizedBox(height: 20),
                 // Row for images side by side
@@ -38,7 +39,11 @@ class LoginScreen extends StatelessWidget {
                       'Student',
                       Colors.blue,
                           () {
-                        // Handle Student Login navigation or logic here
+                        // Navigate to Student Login/Register screen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => StudentLoginScreen()),
+                        );
                       },
                     ),
                     _buildImageButton(
@@ -47,7 +52,11 @@ class LoginScreen extends StatelessWidget {
                       'Professor',
                       Colors.green,
                           () {
-                        // Handle Professor Login navigation or logic here
+                        // Navigate to Teacher Login screen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => TeacherLoginScreen()),
+                        );
                       },
                     ),
                   ],
@@ -84,24 +93,6 @@ class LoginScreen extends StatelessWidget {
               style: TextStyle(color: color, fontSize: 18),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  // Reusable button builder method for cleaner UI code
-  Widget _buildLoginButton(BuildContext context, String text, Color color, VoidCallback onPressed) {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          padding: EdgeInsets.symmetric(vertical: 15),
-        ),
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
     );
